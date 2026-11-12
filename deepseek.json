@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 5,
+  "product": "deepseek-harness-android",
+  "runtime": {
+    "name": "DeepSeek Harness",
+    "version": "0.2.2-rc.1",
+    "webUiVersion": "0.2.2-rc.1",
+    "architecture": "arm64-v8a",
+    "incrementalLayers": true
+  },
+  "layers": {
+    "lite": {
+      "rank": 0,
+      "requires": [
+        "ubuntu"
+      ],
+      "artifact": "lite.7z",
+      "features": [
+        "ssh",
+        "git",
+        "curl",
+        "jq",
+        "vim",
+        "cloudflared-pro-tunnel"
+      ]
+    },
+    "deepseek": {
+      "rank": 1,
+      "requires": [
+        "ubuntu",
+        "lite"
+      ],
+      "artifact": "deepseek.7z",
+      "features": [
+        "deepseek-harness-web",
+        "isolated-node-24"
+      ]
+    },
+    "standard": {
+      "rank": 2,
+      "requires": [
+        "ubuntu",
+        "lite",
+        "deepseek"
+      ],
+      "artifact": "standard.7z",
+      "features": [
+        "mcp-core",
+        "playwright-api"
+      ]
+    },
+    "full": {
+      "rank": 3,
+      "requires": [
+        "ubuntu",
+        "lite",
+        "deepseek",
+        "standard"
+      ],
+      "artifact": "full.7z",
+      "features": [
+        "chromium",
+        "playwright-browser"
+      ]
+    }
+  },
+  "arm64-v8a-ubuntu.7z": {
+    "md5": "558e03497e315be8d9decd3c5783808d",
+    "sha256": "b5926b374f5fa24ce6e199f0aeefce81420980efcde51e4578bcdc4071c1b432",
+    "size": 22069266,
+    "url": "https://raw.githubusercontent.com/goldenduo/DeepSeekRelease/master/202611122335/arm64-v8a/ubuntu.7z"
+  },
+  "arm64-v8a-lite.7z": {
+    "md5": "0522eaab63c88fb40ab6be4c782567fb",
+    "sha256": "f8056a4479c934fa82538d1f1f1e44033df3dfa270943088be9994d9fa2f00fd",
+    "size": 61539415,
+    "url": "https://raw.githubusercontent.com/goldenduo/DeepSeekRelease/master/202611122335/arm64-v8a/lite.7z"
+  },
+  "arm64-v8a-deepseek.7z": {
+    "md5": "0d6510e8d4b7a790e37f94ff61372c38",
+    "sha256": "703292e745c90d5ff86f4bf454494869fc6f4bc303086d9f5ac1a7e575d395e9",
+    "size": 159796773,
+    "url": "https://github.com/goldenduo/DeepSeekRelease/releases/download/v1.0-harness-20261112/arm64-v8a-deepseek.7z"
+  },
+  "arm64-v8a-standard.7z": {
+    "md5": "49a84214c0eded53656c0572e0489326",
+    "sha256": "f02728b1d8b2b80fd723b9d7769710311110393310f7b686800c9e463d461618",
+    "size": 45275610,
+    "url": "https://raw.githubusercontent.com/goldenduo/DeepSeekRelease/master/202611122335/arm64-v8a/standard.7z",
+    "overlayFormat": 1,
+    "requiresSha256": {
+      "ubuntu": "b5926b374f5fa24ce6e199f0aeefce81420980efcde51e4578bcdc4071c1b432",
+      "lite": "f8056a4479c934fa82538d1f1f1e44033df3dfa270943088be9994d9fa2f00fd",
+      "deepseek": "703292e745c90d5ff86f4bf454494869fc6f4bc303086d9f5ac1a7e575d395e9"
+    }
+  },
+  "arm64-v8a-full.7z": {
+    "md5": "3e6c9b5909c32146b8cd1caa723c256d",
+    "sha256": "93e7a346e85be0d901087d31bbb42c5b6b4051f8b69268e41d91bae0154eecbf",
+    "size": 223075032,
+    "url": "https://github.com/goldenduo/DeepSeekRelease/releases/download/v1.0-harness-20261112/arm64-v8a-full.7z",
+    "overlayFormat": 1,
+    "requiresSha256": {
+      "ubuntu": "b5926b374f5fa24ce6e199f0aeefce81420980efcde51e4578bcdc4071c1b432",
+      "lite": "f8056a4479c934fa82538d1f1f1e44033df3dfa270943088be9994d9fa2f00fd",
+      "deepseek": "703292e745c90d5ff86f4bf454494869fc6f4bc303086d9f5ac1a7e575d395e9",
+      "standard": "f02728b1d8b2b80fd723b9d7769710311110393310f7b686800c9e463d461618"
+    }
+  }
+}
